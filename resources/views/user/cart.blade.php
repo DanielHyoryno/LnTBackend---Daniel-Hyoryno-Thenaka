@@ -41,10 +41,11 @@
                     <td>Rp. {{ number_format($item->product->price ?? 0) }}</td>
                     <td>Rp. {{ number_format(($item->product->price ?? 0) * $item->quantity) }}</td>
                     <td>
-                        <form action="{{ route('user.cart.remove', $item->product_id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                        </form>
+                    <form action="{{ route('user.cart.remove', $item->product_id) }}" method="POST" class="remove-cart-form">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm remove-cart-button">Hapus</button>
+                    </form>
+
                     </td>
                 </tr>
                 @endforeach
@@ -86,6 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     updateCheckoutButton(); 
+
+    document.querySelectorAll('.remove-cart-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            this.closest('form').submit();
+        });
+    });
 });
 </script>
 @endsection
