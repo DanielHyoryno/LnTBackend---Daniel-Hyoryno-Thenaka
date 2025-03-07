@@ -56,5 +56,8 @@ class ProductSeeder extends Seeder
             'stock'       => 5,
             'image'       => 'sabaryaazril.jpg'
         ]);
+
+        Product::factory()->count(10)->create(); // Generate 10 random products
+
     }
 }
