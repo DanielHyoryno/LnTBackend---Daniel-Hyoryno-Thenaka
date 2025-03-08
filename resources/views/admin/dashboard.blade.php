@@ -22,10 +22,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card text-bg-warning mb-3">
+                <div class="card-header">Total Invoice</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ $total_invoices ?? 0 }} Invoice</h4>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="mt-4">
         <a href="{{ route('admin.products.index') }}" class="btn btn-primary me-2">Kelola Produk</a>
-        <a href="{{ route('admin.category.index') }}" class="btn btn-secondary">Kelola Kategori</a>
+        <a href="{{ route('admin.category.index') }}" class="btn btn-secondary me-2">Kelola Kategori</a>
+        <a href="{{ route('admin.invoices.index') }}" class="btn btn-warning">Kelola Invoice</a>
     </div>
 @endsection

@@ -89,11 +89,14 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCheckoutButton(); 
 
     document.querySelectorAll('.remove-cart-button').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); 
-            this.closest('form').submit();
-        });
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+        let form = this.closest('form');
+        setTimeout(() => form.submit(), 100);
     });
+});
+
+
 });
 </script>
 @endsection

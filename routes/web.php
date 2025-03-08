@@ -6,6 +6,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('/', [AuthController::class, 'loginForm'])->name('login');
@@ -36,11 +37,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update'); 
         Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])->name('destroy'); 
     });
+
+
+
+    Route::prefix('/admin/invoices')->name('admin.invoices.')->middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', [InvoiceController::class, 'index'])->name('index');
+        Route::get('/{id}', [InvoiceController::class, 'show'])->name('show');
+        Route::delete('/delete/{id}', [InvoiceController::class, 'destroy'])->name('destroy');
+    });
+    
+
 });
-
-
-
-
 
 
 Route::middleware(['auth', 'user'])->group(function () {
